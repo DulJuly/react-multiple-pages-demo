@@ -1,0 +1,11 @@
+.scroll-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+.wrapper {
+  display: inline-block;
+  white-space: nowrap;
+  li {
+    display: inline-block;
+  }
+}
