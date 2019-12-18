@@ -183,7 +183,7 @@ module.exports = function(webpackEnv) {
       // In development, it does not produce real files.
       filename: isEnvProduction
         ? "static/js/[name].[contenthash:8].js"
-        : isEnvDevelopment && "static/js/bundle.js",
+        : isEnvDevelopment && "static/js/[name].js",
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
@@ -513,7 +513,9 @@ module.exports = function(webpackEnv) {
           {},
           {
             inject: true,
-            template: paths.appHtml
+            template: paths.appHtml,
+            filename: "index.html",
+            chunks: ["index"]
           },
           isEnvProduction
             ? {
@@ -530,6 +532,33 @@ module.exports = function(webpackEnv) {
                   minifyURLs: true
                 }
               }
+            : undefined
+        )
+      ),
+      new HtmlWebpackPlugin(
+        Object.assign(
+          {},
+          {
+            inject: true,
+            template: paths.appHtml,
+            filename: "list.html",
+            chunks: ["list"]
+          },
+          isEnvProduction
+            ? {
+              minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                removeRedundantAttributes: true,
+                useShortDoctype: true,
+                removeEmptyAttributes: true,
+                removeStyleLinkTypeAttributes: true,
+                keepClosingSlash: true,
+                minifyJS: true,
+                minifyCSS: true,
+                minifyURLs: true
+              }
+            }
             : undefined
         )
       ),
