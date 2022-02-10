@@ -100,7 +100,7 @@
     "@types/react-redux": "^7.1.1",
     "@types/react-router-dom": "^4.3.4",
     "http-proxy-middleware": "^0.19.1",
-    "node-sass": "^4.12.0"
+    "node-sass": "^7.0.0"
   },
   "jest": {
     "roots": [
